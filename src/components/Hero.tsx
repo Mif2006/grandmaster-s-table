@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
-import heroBackground from "@/assets/futuristic-chess-7.jpg";
+import heroBackground from "@/assets/hero-chess-background.png";
+import heroChessPiece from "@/assets/hero-chess-piece.png";
 import { Button } from "@/components/ui/button";
 import { Crown, Sword, Shield, Target } from "lucide-react";
 
@@ -53,38 +54,25 @@ const Hero = () => {
         />
       </motion.div>
 
-      {/* Vertical text on the left */}
+      {/* Center text "CHECK" - horizontal */}
       <motion.div
-        className="absolute left-8 md:left-16 top-4 lg:top-2 z-10 flex flex-col items-center gap-0 md:gap-1 lg:gap-0"
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
+        className="absolute inset-0 z-10 flex items-center justify-center"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: [0.34, 1.56, 0.64, 1] }}
       >
-        {['G', 'A', 'M', 'E'].map((letter, index) => (
-          <motion.div
-            key={letter}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 0.8, 
-              delay: 0.1 + index * 0.1,
-              ease: [0.34, 1.56, 0.64, 1]
-            }}
-          >
-            <h1
-              className="text-7xl md:text-[12rem] lg:text-[10rem] font-bold leading-none"
-              style={{
-                background: "linear-gradient(180deg, hsl(var(--cyber-cyan)) 0%, hsl(var(--cyber-blue)) 100%)",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "0 0 60px rgba(6, 182, 212, 0.4)",
-              }}
-            >
-              {letter}
-            </h1>
-          </motion.div>
-        ))}
+        <h1
+          className="text-[8rem] md:text-[14rem] lg:text-[18rem] font-bold tracking-wider"
+          style={{
+            background: "linear-gradient(180deg, hsl(var(--cyber-cyan)) 0%, hsl(var(--cyber-blue)) 100%)",
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            textShadow: "0 0 80px rgba(6, 182, 212, 0.5)",
+          }}
+        >
+          CHECK
+        </h1>
       </motion.div>
 
       {/* Top right stats */}
@@ -190,6 +178,23 @@ const Hero = () => {
           />
           <span className="text-sm font-medium text-foreground">SYSTEM ONLINE</span>
         </div>
+      </motion.div>
+
+      {/* Chess piece overlay - Layer 3 (top) */}
+      <motion.div
+        className="absolute inset-0 z-30 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5, delay: 0.3 }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${heroChessPiece})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
       </motion.div>
     </section>
   );
