@@ -51,42 +51,73 @@ const Hero = () => {
             backgroundPosition: "center",
           }}
         />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background/90" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
+        {/* Light vignette only */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/30" />
       </motion.div>
 
-      {/* Subtle vignette glow */}
-      <div className="absolute inset-0 z-0 opacity-30 bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.15),transparent_70%)]" />
+      {/* Minimal glow accent */}
+      <div className="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.1),transparent_80%)]" />
 
       {/* Main content */}
       <div className="relative z-10 container mx-auto px-6 text-center">
-        {/* Main title */}
+        {/* Main title - Unique arrangement */}
         <motion.div
-          className="mb-12"
+          className="mb-12 relative"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.34, 1.56, 0.64, 1] }}
         >
-          <h1 
-            className="text-8xl md:text-[12rem] lg:text-[16rem] font-bold tracking-tighter"
-            style={{
-              background: "linear-gradient(135deg, hsl(var(--cyber-cyan)) 0%, hsl(var(--cyber-blue)) 50%, hsl(var(--cyber-cyan)) 100%)",
-              backgroundSize: "200% 200%",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              textShadow: "0 0 80px rgba(6, 182, 212, 0.5)",
-              animation: "gradient 4s ease infinite",
-            }}
-          >
-            NEXUS
-          </h1>
+          <div className="flex flex-col items-center gap-2 md:gap-4">
+            {/* NEX on top */}
+            <motion.div
+              className="relative"
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h1 
+                className="text-7xl md:text-[10rem] lg:text-[14rem] font-bold tracking-wider"
+                style={{
+                  background: "linear-gradient(135deg, hsl(var(--cyber-cyan)) 0%, hsl(var(--cyber-blue)) 100%)",
+                  backgroundSize: "200% 200%",
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  textShadow: "0 0 80px rgba(6, 182, 212, 0.6)",
+                  animation: "gradient 4s ease infinite",
+                }}
+              >
+                NEX
+              </h1>
+            </motion.div>
+            
+            {/* US on bottom, offset */}
+            <motion.div
+              className="relative -mt-4 md:-mt-8 lg:-mt-12"
+              initial={{ x: 100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <h1 
+                className="text-7xl md:text-[10rem] lg:text-[14rem] font-bold tracking-[0.5em] pl-8 md:pl-16"
+                style={{
+                  background: "linear-gradient(135deg, hsl(var(--cyber-blue)) 0%, hsl(var(--cyber-cyan)) 100%)",
+                  backgroundSize: "200% 200%",
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  textShadow: "0 0 80px rgba(6, 182, 212, 0.6)",
+                  animation: "gradient 4s ease infinite reverse",
+                }}
+              >
+                US
+              </h1>
+            </motion.div>
+          </div>
 
           {/* Glitch overlay */}
-          <motion.h1 
-            className="absolute inset-0 text-8xl md:text-[12rem] lg:text-[16rem] font-bold tracking-tighter text-cyber-cyan opacity-20 pointer-events-none"
-            style={{ mixBlendMode: "screen" }}
+          <motion.div
+            className="absolute inset-0 pointer-events-none opacity-20"
             animate={{
               opacity: [0, 0.3, 0],
               x: [0, -3, 3, 0],
@@ -97,8 +128,15 @@ const Hero = () => {
               repeatDelay: 4,
             }}
           >
-            NEXUS
-          </motion.h1>
+            <div className="flex flex-col items-center gap-2 md:gap-4">
+              <h1 className="text-7xl md:text-[10rem] lg:text-[14rem] font-bold tracking-wider text-cyber-cyan">
+                NEX
+              </h1>
+              <h1 className="text-7xl md:text-[10rem] lg:text-[14rem] font-bold tracking-[0.5em] pl-8 md:pl-16 text-cyber-cyan -mt-4 md:-mt-8 lg:-mt-12">
+                US
+              </h1>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* CTA */}

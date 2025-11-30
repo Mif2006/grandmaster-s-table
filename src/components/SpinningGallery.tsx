@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { Zap } from "lucide-react";
 import board1 from "@/assets/futuristic-chess-1.jpg";
 import board2 from "@/assets/futuristic-chess-3.jpg";
@@ -18,8 +17,6 @@ const items = [
 ];
 
 const SpinningGallery = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
     <section className="py-24 bg-background relative overflow-hidden">
       {/* Animated background elements */}
@@ -43,10 +40,10 @@ const SpinningGallery = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Neural Gallery
+            Visual Archives
           </h2>
           <p className="text-lg text-muted-foreground font-mono">
-            Rotating selection of elite combat systems
+            Explore our collection of advanced chess warfare systems
           </p>
         </motion.div>
 
@@ -66,7 +63,6 @@ const SpinningGallery = () => {
 
           {items.map((item, index) => {
             const angle = (index / items.length) * 360;
-            const isHovered = hoveredIndex === index;
             
             return (
               <motion.div
@@ -76,12 +72,12 @@ const SpinningGallery = () => {
                   transformOrigin: "center",
                 }}
                 animate={{
-                  rotate: isHovered ? angle : angle + 360,
+                  rotate: angle + 360,
                 }}
                 transition={{
-                  duration: isHovered ? 0 : 20,
+                  duration: 20,
                   ease: "linear",
-                  repeat: isHovered ? 0 : Infinity,
+                  repeat: Infinity,
                 }}
               >
                 <motion.div
@@ -89,31 +85,25 @@ const SpinningGallery = () => {
                     x: 250,
                   }}
                   animate={{
-                    scale: isHovered ? 1.3 : 1,
-                    rotate: isHovered ? -angle : -angle - 360,
+                    rotate: -angle - 360,
                   }}
                   transition={{
-                    duration: isHovered ? 0.3 : 20,
-                    ease: isHovered ? "easeOut" : "linear",
-                    repeat: isHovered ? 0 : Infinity,
+                    duration: 20,
+                    ease: "linear",
+                    repeat: Infinity,
                   }}
-                  onHoverStart={() => setHoveredIndex(index)}
-                  onHoverEnd={() => setHoveredIndex(null)}
-                  className="relative"
                 >
                   <motion.div
-                    className="relative w-48 h-48 rounded-xl overflow-hidden border-2 cursor-pointer group"
+                    className="relative w-48 h-48 rounded-xl overflow-hidden border-2 group"
                     style={{
-                      borderColor: isHovered ? "hsl(var(--cyber-cyan))" : "hsl(var(--border))",
+                      borderColor: "hsl(var(--border))",
                       background: "rgba(var(--glass-bg) / 0.6)",
                       backdropFilter: "blur(12px)",
-                      boxShadow: isHovered
-                        ? "0 0 60px rgba(6, 182, 212, 0.6)"
-                        : "0 10px 40px rgba(0, 0, 0, 0.5)",
+                      boxShadow: "0 10px 40px rgba(0, 0, 0, 0.5)",
                     }}
                   >
                     {/* Glass overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyber-cyan/20 via-transparent to-cyber-orange/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyber-cyan/20 via-transparent to-cyber-orange/20" />
                     
                     {/* Image */}
                     <img
@@ -123,30 +113,15 @@ const SpinningGallery = () => {
                     />
                     
                     {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/30 to-transparent" />
                     
-                    {/* Content - shown on hover */}
-                    <motion.div
-                      className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-background/90 backdrop-blur-xl"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: isHovered ? 1 : 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Zap className="w-8 h-8 text-cyber-cyan mb-2" />
-                      <h3 className="text-lg font-bold text-foreground text-center mb-1">
+                    {/* Content overlay */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
+                      <h3 className="text-sm font-bold text-foreground text-center mb-1">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-cyber-cyan font-mono">{item.stat}</p>
-                      
-                      {/* Animated border */}
-                      <motion.div
-                        className="absolute inset-0 border-2 border-cyber-cyan rounded-xl"
-                        animate={{
-                          opacity: [0.5, 1, 0.5],
-                        }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      />
-                    </motion.div>
+                      <p className="text-xs text-cyber-cyan font-mono">{item.stat}</p>
+                    </div>
 
                     {/* Corner accents */}
                     <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-cyber-cyan/50" />
@@ -160,12 +135,7 @@ const SpinningGallery = () => {
           })}
 
           {/* Center logo/text */}
-          <motion.div
-            className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
-            animate={{
-              opacity: hoveredIndex === null ? 1 : 0.3,
-            }}
-          >
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <motion.div
               className="text-center"
               animate={{
@@ -175,13 +145,13 @@ const SpinningGallery = () => {
             >
               <Zap className="w-16 h-16 text-cyber-cyan mx-auto mb-4" />
               <h3 className="text-2xl font-bold text-foreground mb-2 font-mono">
-                NEURAL CORE
+                VISUAL CORE
               </h3>
               <p className="text-sm text-muted-foreground font-mono">
-                HOVER TO SCAN
+                ROTATING GALLERY
               </p>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
