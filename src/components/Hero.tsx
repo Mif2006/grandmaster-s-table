@@ -55,7 +55,7 @@ const Hero = () => {
 
       {/* Vertical text on the left */}
       <motion.div
-        className="absolute left-8 md:left-16 top-8 z-10 flex flex-col items-center gap-1 md:gap-2"
+        className="absolute left-8 md:left-16 top-4 z-10 flex flex-col items-center gap-1 md:gap-2"
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1.2, ease: [0.34, 1.56, 0.64, 1] }}
