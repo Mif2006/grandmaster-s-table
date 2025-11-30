@@ -56,12 +56,23 @@ const products: Product[] = [
 
 const FanProductCards = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [expandedId, setExpandedId] = useState<number | null>(null);
 
   return (
     <section className="py-24 bg-background relative overflow-hidden">
-      {/* Background effects */}
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 opacity-30"
+        style={{
+          backgroundImage: `url(${board1})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      
+      {/* Subtle overlay effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-cyber-cyan/5 via-transparent to-cyber-orange/5" />
-      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.1),transparent_50%)]" />
 
       <div className="container mx-auto px-6">
         <motion.div
@@ -83,27 +94,32 @@ const FanProductCards = () => {
         <div className="relative h-[700px] md:h-[800px] flex items-center justify-center">
           {products.map((product, index) => {
             const totalCards = products.length;
-            const angle = (index - (totalCards - 1) / 2) * 12;
-            const isHovered = hoveredId === product.id;
-            const isOtherHovered = hoveredId !== null && hoveredId !== product.id;
+            const baseAngle = (index - (totalCards - 1) / 2) * 12;
+            const angle = hoveredId !== null && hoveredId !== product.id 
+              ? baseAngle 
+              : hoveredId === product.id 
+                ? baseAngle * 1.5 
+                : baseAngle;
+            const isExpanded = expandedId === product.id;
+            const isOtherExpanded = expandedId !== null && expandedId !== product.id;
 
             return (
               <motion.div
                 key={product.id}
-                className="absolute"
+                className="absolute cursor-pointer"
                 style={{
                   transformOrigin: "bottom center",
-                  zIndex: isHovered ? 50 : totalCards - Math.abs(index - 2),
+                  zIndex: isExpanded ? 50 : totalCards - Math.abs(index - 2),
                 }}
                 initial={{
-                  rotate: angle,
+                  rotate: baseAngle,
                   y: 0,
                 }}
                 animate={{
-                  rotate: isHovered ? 0 : angle,
-                  y: isHovered ? -50 : 0,
-                  scale: isHovered ? 1.1 : isOtherHovered ? 0.85 : 1,
-                  x: isOtherHovered ? (index < 2 ? -40 : index > 2 ? 40 : 0) : 0,
+                  rotate: isExpanded ? 0 : angle,
+                  y: isExpanded ? -50 : 0,
+                  scale: isExpanded ? 1.1 : isOtherExpanded ? 0.85 : 1,
+                  x: isOtherExpanded ? (index < 2 ? -40 : index > 2 ? 40 : 0) : 0,
                 }}
                 transition={{
                   type: "spring",
@@ -112,18 +128,19 @@ const FanProductCards = () => {
                 }}
                 onHoverStart={() => setHoveredId(product.id)}
                 onHoverEnd={() => setHoveredId(null)}
+                onClick={() => setExpandedId(expandedId === product.id ? null : product.id)}
               >
                 <motion.div
-                  className="relative bg-card/80 backdrop-blur-xl rounded-lg overflow-hidden shadow-2xl cursor-pointer border border-border/50"
+                  className="relative bg-card/80 backdrop-blur-xl rounded-lg overflow-hidden shadow-2xl border border-border/50"
                   style={{
                     width: "320px",
                     height: "500px",
-                    boxShadow: isHovered 
+                    boxShadow: isExpanded 
                       ? "0 0 60px rgba(6, 182, 212, 0.4)" 
                       : "0 20px 50px rgba(0, 0, 0, 0.5)",
                   }}
                   animate={{
-                    filter: isOtherHovered ? "blur(3px)" : "blur(0px)",
+                    filter: isOtherExpanded ? "blur(3px)" : "blur(0px)",
                   }}
                 >
                   {/* Glass morphism overlay */}
@@ -187,7 +204,7 @@ const FanProductCards = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center text-sm text-muted-foreground mt-12 font-mono"
         >
-          [ HOVER TO ENHANCE SYSTEM DETAILS ]
+          [ CLICK TO EXPAND SYSTEM DETAILS ]
         </motion.p>
       </div>
     </section>
