@@ -8,58 +8,59 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Rich wood and artisanal chess palette */
-    --background: 28 25% 8%;
-    --foreground: 36 45% 92%;
+    /* Futuristic dark tech palette */
+    --background: 220 20% 8%;
+    --foreground: 180 15% 95%;
 
-    --card: 28 20% 12%;
-    --card-foreground: 36 45% 92%;
+    --card: 220 18% 12%;
+    --card-foreground: 180 15% 95%;
 
-    --popover: 28 20% 12%;
-    --popover-foreground: 36 45% 92%;
+    --popover: 220 18% 12%;
+    --popover-foreground: 180 15% 95%;
 
-    /* Brass/gold primary */
-    --primary: 43 74% 58%;
-    --primary-foreground: 28 25% 8%;
+    /* Cyber cyan primary */
+    --primary: 180 85% 55%;
+    --primary-foreground: 220 20% 8%;
 
-    /* Rich mahogany secondary */
-    --secondary: 15 45% 25%;
-    --secondary-foreground: 36 45% 92%;
+    /* Dark tech secondary */
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 180 15% 95%;
 
-    /* Muted wood tones */
-    --muted: 28 15% 18%;
-    --muted-foreground: 36 25% 65%;
+    /* Muted dark tones */
+    --muted: 220 15% 20%;
+    --muted-foreground: 180 10% 65%;
 
-    /* Accent - marble white */
-    --accent: 40 20% 88%;
-    --accent-foreground: 28 25% 8%;
+    /* Accent - cyber orange */
+    --accent: 25 90% 55%;
+    --accent-foreground: 220 20% 8%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 36 45% 92%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 28 15% 22%;
-    --input: 28 15% 22%;
-    --ring: 43 74% 58%;
+    --border: 220 15% 22%;
+    --input: 220 15% 22%;
+    --ring: 180 85% 55%;
 
-    --radius: 0.375rem;
+    --radius: 0.5rem;
 
-    /* Custom chess design tokens */
-    --wood-dark: 25 35% 18%;
-    --wood-light: 35 40% 45%;
-    --brass: 43 74% 58%;
-    --brass-dark: 43 65% 42%;
-    --marble: 40 20% 88%;
-    --carbon: 220 15% 12%;
+    /* Custom futuristic design tokens */
+    --cyber-cyan: 180 85% 55%;
+    --cyber-blue: 200 90% 60%;
+    --cyber-orange: 25 90% 55%;
+    --cyber-purple: 270 80% 60%;
+    --metal-dark: 220 10% 15%;
+    --metal-light: 220 8% 35%;
+    --glass-bg: 220 15% 20%;
 
     /* Gradients */
-    --gradient-wood: linear-gradient(135deg, hsl(25 35% 18%) 0%, hsl(30 40% 22%) 50%, hsl(25 30% 16%) 100%);
-    --gradient-brass: linear-gradient(135deg, hsl(43 74% 58%) 0%, hsl(45 80% 65%) 50%, hsl(43 74% 58%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(28 25% 8%) 0%, hsl(25 30% 12%) 50%, hsl(28 25% 8%) 100%);
+    --gradient-cyber: linear-gradient(135deg, hsl(180 85% 55%) 0%, hsl(200 90% 60%) 100%);
+    --gradient-metal: linear-gradient(135deg, hsl(220 8% 35%) 0%, hsl(220 10% 15%) 100%);
+    --gradient-glow: linear-gradient(135deg, hsl(25 90% 55% / 0.3) 0%, hsl(180 85% 55% / 0.3) 100%);
 
     /* Shadows */
-    --shadow-brass: 0 8px 24px -4px hsl(43 74% 38% / 0.4);
+    --shadow-cyber: 0 8px 24px -4px hsl(180 85% 55% / 0.4);
     --shadow-deep: 0 20px 40px -8px hsl(0 0% 0% / 0.6);
-    --shadow-inset: inset 0 2px 8px hsl(0 0% 0% / 0.3);
+    --shadow-glow: 0 0 40px hsl(180 85% 55% / 0.5);
 
     /* Animations */
     --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
