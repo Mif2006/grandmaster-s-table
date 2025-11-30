@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import board1 from "@/assets/futuristic-chess-1.jpg";
@@ -57,6 +57,23 @@ const products: Product[] = [
 const FanProductCards = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [expandedId, setExpandedId] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setExpandedId(null);
+      }
+    };
+
+    if (expandedId !== null) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [expandedId]);
 
   return (
     <section className="py-24 bg-background relative overflow-hidden">
@@ -91,7 +108,7 @@ const FanProductCards = () => {
         </motion.div>
 
         {/* Fan layout container */}
-        <div className="relative h-[700px] md:h-[800px] flex items-center justify-center">
+        <div ref={containerRef} className="relative h-[700px] md:h-[800px] flex items-center justify-center">
           {products.map((product, index) => {
             const totalCards = products.length;
             const baseAngle = (index - (totalCards - 1) / 2) * 12;

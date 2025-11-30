@@ -94,13 +94,13 @@ const ParallaxStack = () => {
             
             const opacity = useTransform(
               scrollYProgress,
-              [yStart / 400, (yStart + 50) / 400, (yEnd - 50) / 400, yEnd / 400],
+              [yStart / 400, (yStart + 30) / 400, (yEnd - 20) / 400, yEnd / 400],
               [0, 1, 1, 0]
             );
             
             const scale = useTransform(
               scrollYProgress,
-              [yStart / 400, (yStart + 50) / 400, (yEnd - 50) / 400, yEnd / 400],
+              [yStart / 400, (yStart + 30) / 400, (yEnd - 20) / 400, yEnd / 400],
               [0.8, 1, 1, 0.8]
             );
 
