@@ -14,14 +14,18 @@ const Hero = () => {
       className="relative min-h-screen overflow-hidden bg-background flex items-center justify-center"
     >
       {/* Background image - Layer 1 */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${heroBackground})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
+      <div className="absolute inset-0 z-0">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${heroBackground})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/30" />
+      </div>
 
       {/* Center text "CHECK" - Layer 2 */}
       <motion.div
@@ -33,12 +37,8 @@ const Hero = () => {
         <h1
           className="text-[8rem] md:text-[14rem] lg:text-[20rem] font-bold tracking-wider"
           style={{
-            background: "linear-gradient(135deg, #ffffff 0%, hsl(var(--cyber-cyan)) 50%, #ffffff 100%)",
-            backgroundClip: "text",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            textShadow: "0 0 40px rgba(6, 182, 212, 0.8), 0 0 80px rgba(6, 182, 212, 0.5), 0 4px 12px rgba(0, 0, 0, 0.9)",
-            filter: "drop-shadow(0 0 20px rgba(6, 182, 212, 0.6)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8))",
+            color: "#ffffff",
+            textShadow: "0 2px 8px rgba(0, 0, 0, 0.5), 0 0 30px rgba(6, 182, 212, 0.3)",
           }}
         >
           CHECK
