@@ -112,13 +112,15 @@ const FanProductCards = () => {
           {products.map((product, index) => {
             const totalCards = products.length;
             const baseAngle = (index - (totalCards - 1) / 2) * 12;
-            const angle = hoveredId !== null && hoveredId !== product.id 
-              ? baseAngle 
-              : hoveredId === product.id 
-                ? baseAngle * 1.5 
-                : baseAngle;
+            
+            // Fan out more when hovering any card
+            const angle = hoveredId !== null 
+              ? baseAngle * 1.8  // Fan out more
+              : baseAngle;
+            
             const isExpanded = expandedId === product.id;
             const isOtherExpanded = expandedId !== null && expandedId !== product.id;
+            const isHovered = hoveredId === product.id;
 
             return (
               <motion.div
@@ -126,7 +128,7 @@ const FanProductCards = () => {
                 className="absolute cursor-pointer"
                 style={{
                   transformOrigin: "bottom center",
-                  zIndex: isExpanded ? 50 : totalCards - Math.abs(index - 2),
+                  zIndex: isExpanded ? 50 : isHovered ? 40 : totalCards - Math.abs(index - 2),
                 }}
                 initial={{
                   rotate: baseAngle,
@@ -134,8 +136,8 @@ const FanProductCards = () => {
                 }}
                 animate={{
                   rotate: isExpanded ? 0 : angle,
-                  y: isExpanded ? -50 : 0,
-                  scale: isExpanded ? 1.1 : isOtherExpanded ? 0.85 : 1,
+                  y: isExpanded ? -50 : isHovered ? -20 : 0,
+                  scale: isExpanded ? 1.1 : isHovered ? 1.08 : isOtherExpanded ? 0.85 : 1,
                   x: isOtherExpanded ? (index < 2 ? -40 : index > 2 ? 40 : 0) : 0,
                 }}
                 transition={{
