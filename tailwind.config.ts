@@ -47,16 +47,19 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        wood: {
-          dark: "hsl(var(--wood-dark))",
-          light: "hsl(var(--wood-light))",
+        cyber: {
+          cyan: "hsl(var(--cyber-cyan))",
+          blue: "hsl(var(--cyber-blue))",
+          orange: "hsl(var(--cyber-orange))",
+          purple: "hsl(var(--cyber-purple))",
         },
-        brass: {
-          DEFAULT: "hsl(var(--brass))",
-          dark: "hsl(var(--brass-dark))",
+        metal: {
+          dark: "hsl(var(--metal-dark))",
+          light: "hsl(var(--metal-light))",
         },
-        marble: "hsl(var(--marble))",
-        carbon: "hsl(var(--carbon))",
+        glass: {
+          bg: "hsl(var(--glass-bg))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -104,9 +107,12 @@ export default {
         "pulse-brass": "pulse-brass 2s ease-in-out infinite",
       },
       backgroundImage: {
-        "gradient-wood": "var(--gradient-wood)",
-        "gradient-brass": "var(--gradient-brass)",
-        "gradient-hero": "var(--gradient-hero)",
+        "gradient-cyber": "var(--gradient-cyber)",
+        "gradient-metal": "var(--gradient-metal)",
+        "gradient-glow": "var(--gradient-glow)",
+      },
+      backdropBlur: {
+        xs: "2px",
       },
     },
   },
