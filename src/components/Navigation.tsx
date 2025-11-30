@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 const Navigation = () => {
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/30"
+      className="fixed top-0 left-0 right-0 z-50"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
@@ -17,35 +17,35 @@ const Navigation = () => {
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="w-10 h-10 bg-gradient-brass rounded flex items-center justify-center">
+          <div className="w-10 h-10 bg-cyber-cyan/20 backdrop-blur-sm rounded flex items-center justify-center border border-cyber-cyan/30">
             <span className="text-2xl">♔</span>
           </div>
-          <span className="text-xl font-bold text-foreground">REGALIS</span>
+          <span className="text-xl font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">REGALIS</span>
         </motion.div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
           <a
             href="#boards"
-            className="text-foreground/80 hover:text-brass transition-colors duration-200 font-medium"
+            className="text-white/90 hover:text-cyber-cyan transition-colors duration-200 font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
           >
             Boards
           </a>
           <a
             href="#tournaments"
-            className="text-foreground/80 hover:text-brass transition-colors duration-200 font-medium"
+            className="text-white/90 hover:text-cyber-cyan transition-colors duration-200 font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
           >
             Tournaments
           </a>
           <a
             href="#craft"
-            className="text-foreground/80 hover:text-brass transition-colors duration-200 font-medium"
+            className="text-white/90 hover:text-cyber-cyan transition-colors duration-200 font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
           >
             Craft
           </a>
           <a
             href="#about"
-            className="text-foreground/80 hover:text-brass transition-colors duration-200 font-medium"
+            className="text-white/90 hover:text-cyber-cyan transition-colors duration-200 font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
           >
             About
           </a>
@@ -56,10 +56,10 @@ const Navigation = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="relative hover:bg-brass/10 hover:text-brass transition-all duration-200"
+            className="relative text-white hover:bg-cyber-cyan/20 hover:text-cyber-cyan transition-all duration-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
           >
             <ShoppingCart className="w-5 h-5" />
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-brass text-background text-xs rounded-full flex items-center justify-center font-bold">
+            <span className="absolute -top-1 -right-1 w-4 h-4 bg-cyber-cyan text-background text-xs rounded-full flex items-center justify-center font-bold">
               0
             </span>
           </Button>
@@ -67,7 +67,7 @@ const Navigation = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="hover:bg-brass/10 hover:text-brass transition-all duration-200"
+            className="text-white hover:bg-cyber-cyan/20 hover:text-cyber-cyan transition-all duration-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
           >
             <User className="w-5 h-5" />
           </Button>
@@ -75,7 +75,7 @@ const Navigation = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden hover:bg-brass/10 hover:text-brass transition-all duration-200"
+            className="md:hidden text-white hover:bg-cyber-cyan/20 hover:text-cyber-cyan transition-all duration-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
           >
             <Menu className="w-5 h-5" />
           </Button>
