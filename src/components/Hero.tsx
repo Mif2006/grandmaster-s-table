@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
-import heroBackground from "@/assets/wood-grain-hero.jpg";
+import heroBackground from "@/assets/futuristic-chess-5.jpg";
 import { Button } from "@/components/ui/button";
 import { Crown, Sword, Shield, Target } from "lucide-react";
 
@@ -55,7 +55,7 @@ const Hero = () => {
 
       {/* Vertical text on the left */}
       <motion.div
-        className="absolute left-8 md:left-16 top-1/2 -translate-y-1/2 z-10 flex flex-col items-center gap-0"
+        className="absolute left-8 md:left-16 top-1/2 -translate-y-1/2 z-10 flex flex-col items-center gap-1 md:gap-2"
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1.2, ease: [0.34, 1.56, 0.64, 1] }}
@@ -72,7 +72,7 @@ const Hero = () => {
             }}
           >
             <h1
-              className="text-8xl md:text-[12rem] lg:text-[16rem] font-bold leading-none"
+              className="text-6xl md:text-8xl lg:text-9xl font-bold leading-none"
               style={{
                 background: "linear-gradient(180deg, hsl(var(--cyber-cyan)) 0%, hsl(var(--cyber-blue)) 100%)",
                 backgroundClip: "text",

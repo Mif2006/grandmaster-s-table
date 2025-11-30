@@ -128,7 +128,7 @@ const FanProductCards = () => {
                 className="absolute cursor-pointer"
                 style={{
                   transformOrigin: "bottom center",
-                  zIndex: isExpanded ? 50 : isHovered ? 40 : totalCards - Math.abs(index - 2),
+                  zIndex: isExpanded ? 50 : totalCards - Math.abs(index - 2),
                 }}
                 initial={{
                   rotate: baseAngle,
@@ -136,14 +136,14 @@ const FanProductCards = () => {
                 }}
                 animate={{
                   rotate: isExpanded ? 0 : angle,
-                  y: isExpanded ? -50 : isHovered ? -20 : 0,
-                  scale: isExpanded ? 1.1 : isHovered ? 1.08 : isOtherExpanded ? 0.85 : 1,
+                  y: isExpanded ? -50 : isHovered ? -15 : 0,
+                  scale: isExpanded ? 1.1 : isHovered ? 1.05 : isOtherExpanded ? 0.85 : 1,
                   x: isOtherExpanded ? (index < 2 ? -40 : index > 2 ? 40 : 0) : 0,
                 }}
                 transition={{
                   type: "spring",
-                  stiffness: 300,
-                  damping: 25,
+                  stiffness: 200,
+                  damping: 30,
                 }}
                 onHoverStart={() => setHoveredId(product.id)}
                 onHoverEnd={() => setHoveredId(null)}
