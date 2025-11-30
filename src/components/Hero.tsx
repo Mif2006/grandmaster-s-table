@@ -7,68 +7,35 @@ import { Crown, Sword, Shield, Target } from "lucide-react";
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const parallaxX = useTransform(mouseX, [-500, 500], [-15, 15]);
-  const parallaxY = useTransform(mouseY, [-500, 500], [-15, 15]);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        mouseX.set(e.clientX - centerX);
-        mouseY.set(e.clientY - centerY);
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [mouseX, mouseY]);
 
   return (
     <section
       ref={containerRef}
       className="relative min-h-screen overflow-hidden bg-background flex items-center justify-center"
     >
-      {/* Background image with parallax */}
-      <motion.div
+      {/* Background image - Layer 1 */}
+      <div
         className="absolute inset-0 z-0"
         style={{
-          x: parallaxX,
-          y: parallaxY,
+          backgroundImage: `url(${heroBackground})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
-      >
-        <div
-          className="absolute inset-0 scale-110"
-          style={{
-            backgroundImage: `url(${heroBackground})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-      </motion.div>
+      />
 
-      {/* Center text "CHECK" - horizontal */}
+      {/* Center text "CHECK" - Layer 2 */}
       <motion.div
-        className="absolute inset-0 z-10 flex items-center justify-center"
+        className="absolute inset-0 z-20 flex items-center justify-center"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: [0.34, 1.56, 0.64, 1] }}
       >
         <h1
-          className="text-[8rem] md:text-[14rem] lg:text-[18rem] font-bold tracking-wider"
+          className="text-[8rem] md:text-[14rem] lg:text-[20rem] font-bold tracking-wider"
           style={{
-            background: "linear-gradient(180deg, hsl(var(--cyber-cyan)) 0%, hsl(var(--cyber-blue)) 100%)",
-            backgroundClip: "text",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            textShadow: "0 0 80px rgba(6, 182, 212, 0.5)",
+            color: "white",
+            textShadow: "0 0 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(6, 182, 212, 0.6), 0 4px 8px rgba(0, 0, 0, 0.9)",
+            WebkitTextStroke: "2px rgba(6, 182, 212, 0.3)",
           }}
         >
           CHECK
@@ -104,7 +71,7 @@ const Hero = () => {
 
       {/* Bottom left quick actions */}
       <motion.div
-        className="absolute bottom-8 left-8 md:bottom-12 md:left-16 z-10 flex gap-4"
+        className="absolute bottom-8 left-8 md:bottom-16 md:left-16 z-20 flex gap-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
@@ -127,39 +94,9 @@ const Hero = () => {
         </Button>
       </motion.div>
 
-      {/* Bottom center live activity feed */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 md:bottom-12"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.7 }}
-      >
-        <div className="bg-card/30 backdrop-blur-md border border-border/50 rounded-lg px-6 py-4 min-w-[300px]">
-          <div className="flex items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <motion.div
-                className="w-2 h-2 rounded-full bg-cyber-cyan"
-                animate={{
-                  opacity: [1, 0.3, 1],
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              <div>
-                <p className="text-xs text-muted-foreground font-mono">LIVE MATCH</p>
-                <p className="text-sm font-bold text-foreground">Magnus vs Hikaru</p>
-              </div>
-            </div>
-            <div className="text-right">
-              <p className="text-xs text-muted-foreground font-mono">MOVE 24</p>
-              <p className="text-sm font-bold text-cyber-orange">2,847 watching</p>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-
       {/* Bottom right status indicator */}
       <motion.div
-        className="absolute bottom-8 right-8 md:bottom-12 md:right-16 z-10"
+        className="absolute bottom-8 right-8 md:bottom-16 md:right-16 z-20"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.6 }}
@@ -180,7 +117,7 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* Chess piece overlay - Layer 3 (top) */}
+      {/* Chess piece overlay - Layer 3 (top) - exact same size and position as background */}
       <motion.div
         className="absolute inset-0 z-30 pointer-events-none"
         initial={{ opacity: 0 }}
