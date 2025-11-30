@@ -60,7 +60,7 @@ const Hero = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1.2, ease: [0.34, 1.56, 0.64, 1] }}
       >
-        {['G', 'A', 'M', 'B', 'I', 'T'].map((letter, index) => (
+        {['G', 'A', 'M', 'E'].map((letter, index) => (
           <motion.div
             key={letter}
             initial={{ opacity: 0, y: 20 }}
@@ -72,7 +72,7 @@ const Hero = () => {
             }}
           >
             <h1
-              className="text-8xl md:text-[14rem] lg:text-[18rem] font-bold leading-none"
+              className="text-7xl md:text-[12rem] lg:text-[16rem] font-bold leading-none"
               style={{
                 background: "linear-gradient(180deg, hsl(var(--cyber-cyan)) 0%, hsl(var(--cyber-blue)) 100%)",
                 backgroundClip: "text",
@@ -137,6 +137,36 @@ const Hero = () => {
           <Shield className="w-5 h-5 mr-2 text-cyber-orange group-hover:scale-110 transition-transform duration-300" />
           Learn
         </Button>
+      </motion.div>
+
+      {/* Bottom center live activity feed */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 md:bottom-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.7 }}
+      >
+        <div className="bg-card/30 backdrop-blur-md border border-border/50 rounded-lg px-6 py-4 min-w-[300px]">
+          <div className="flex items-center justify-between gap-6">
+            <div className="flex items-center gap-3">
+              <motion.div
+                className="w-2 h-2 rounded-full bg-cyber-cyan"
+                animate={{
+                  opacity: [1, 0.3, 1],
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              <div>
+                <p className="text-xs text-muted-foreground font-mono">LIVE MATCH</p>
+                <p className="text-sm font-bold text-foreground">Magnus vs Hikaru</p>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-xs text-muted-foreground font-mono">MOVE 24</p>
+              <p className="text-sm font-bold text-cyber-orange">2,847 watching</p>
+            </div>
+          </div>
+        </div>
       </motion.div>
 
       {/* Bottom right status indicator */}
